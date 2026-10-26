@@ -60,9 +60,10 @@ rs_joined_orig %>%
 # there are 860 rows, but only 140 songs matched.
 # Many songs also seemed to appear twice.
 # They also failed to match because i believe the full_join needs the text to match exactly, and the two lists
-# format it different: curly vs straight apostrophes (What’s vs What's), some are missing "The" in artist names
-# another difference also between "and" vs "&", and also capitalisation (is vs Is),
-# and punctuation (Tutti Frutti vs Tutti-Frutti).
+# format it different
+#The other problems are with curly vs straight apostrophes (What’s and What's), some are missing "The" in artist names
+# another difference also between "and" vs "&", and also capitalisation (is and Is),
+# and also the punctuation or dashes (Tutti Frutti vs Tutti-Frutti).
 
 ### Question 2 ----------
 
@@ -83,7 +84,7 @@ rs_all <- bind_rows(rs_new, rs_old)
 nrow(rs_all)
 count(rs_all, Source)
 glimpse(rs_all)
-# okay rank and year are both in integar now
+# okay rank and year are both in integer now
 
 ### Question 3 ----------
 
@@ -134,6 +135,7 @@ rs_joined <- full_join(rs_new_clean, rs_old_clean,
 )
 
 nrow(rs_joined)
+#this worked
 
 ### Question 5 ----------
 
@@ -170,7 +172,7 @@ rs_joined <- rs_joined %>%
 rs_joined %>%
   group_by(Decade) %>%
   summarize(mean_rank_change = mean(Rank_Change))
-
+#i beleive this worked
 
 ### Question 7 ----------
 
@@ -258,3 +260,4 @@ top20 %>%
   slice_min(Rank_New)
 
 glimpse(top20)
+#i also styled it
